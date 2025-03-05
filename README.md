@@ -1,54 +1,46 @@
-# React + TypeScript + Vite
+# Frontend - Full Stack Engineering Test
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository contains the frontend for the Full Stack Engineering Test. It is built using **Vite 6**, **React 19**, **TypeScript 5**, and **Chakra UI 3.9.0**.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Vite 6** - Fast development and optimized builds
+- **React 19** - Modern UI library
+- **TypeScript 5** - Strongly typed JavaScript
+- **Chakra UI 3.9.0** - Accessible and customizable component library
+- **pnpm 9.12.2** - Efficient package manager
+- **Node.js 20.17** - Runtime environment
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Prerequisites
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+Ensure you have the following installed on your system:
+
+- [Node.js 20.17+](https://nodejs.org/)
+- [pnpm 9.12.2+](https://pnpm.io/)
+
+### Installation
+
+Clone the repository and install dependencies:
+
+```sh
+# Clone the repository
+git clone <ssh_url>
+
+# Navigate to the project folder
+cd <cloned_folder>
+
+# Install dependencies
+pnpm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Running the Development Server
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Start the local development server with:
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```sh
+pnpm dev
 ```
+
+The application will be available at `http://localhost:3001`.
