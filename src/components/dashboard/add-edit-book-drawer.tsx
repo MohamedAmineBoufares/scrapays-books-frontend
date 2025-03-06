@@ -57,7 +57,9 @@ function AddEditBookDrawer({ open, toggleOpen, row }: Props) {
           <DrawerActionTrigger asChild>
             <Button variant="outline">Cancel</Button>
           </DrawerActionTrigger>
-          <Button>Save</Button>
+          <Button bg="purple.600" width="1/2">
+            Save
+          </Button>
         </DrawerFooter>
         <DrawerCloseTrigger />
       </DrawerContent>

@@ -1,11 +1,22 @@
-import { Avatar, HStack, IconButton, Stack, Text } from "@chakra-ui/react";
+import {
+  Avatar,
+  HStack,
+  IconButton,
+  Spinner,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
 import { useColorMode } from "../ui/color-mode";
 import { LuMoon, LuSun, LuPower } from "react-icons/lu";
 import { Tooltip } from "../ui/tooltip";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function Header() {
+  const { logout, isLoading, user } = useAuth0();
   const { toggleColorMode, colorMode } = useColorMode();
   const isDarkMode = colorMode === "dark";
+
+  const userName = user?.given_name ?? user?.nickname;
 
   return (
     <HStack
@@ -15,13 +26,13 @@ function Header() {
     >
       <HStack>
         <Avatar.Root size="2xl">
-          <Avatar.Fallback name="Dan Abramov" />
-          <Avatar.Image src="https://bit.ly/dan-abramov" />
+          <Avatar.Fallback name={userName} />
+          <Avatar.Image src={user?.picture} />
         </Avatar.Root>
 
         <Stack gap={1}>
           <Text textStyle="4xl" fontWeight="extrabold">
-            Welcome back Dan 👋
+            Welcome back, {userName} 👋
           </Text>
           <Text
             textStyle="sm"
@@ -51,8 +62,14 @@ function Header() {
           openDelay={0}
           closeDelay={0}
         >
-          <IconButton variant="ghost" size="sm">
-            <LuPower />
+          <IconButton
+            variant="ghost"
+            size="sm"
+            onClick={() =>
+              logout({ logoutParams: { returnTo: window.location.origin } })
+            }
+          >
+            {isLoading ? <Spinner /> : <LuPower />}
           </IconButton>
         </Tooltip>
       </HStack>
