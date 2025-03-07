@@ -4,7 +4,7 @@ import { LuBook } from "react-icons/lu";
 function NoData() {
   return (
     <Table.Row>
-      <Table.Cell colSpan={3}>
+      <Table.Cell colSpan={4}>
         <Box
           height={200}
           display="flex"
