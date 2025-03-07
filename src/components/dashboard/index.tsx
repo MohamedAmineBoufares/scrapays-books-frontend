@@ -14,7 +14,7 @@ function Dashboard() {
 
   return (
     <>
-      <div className="!p-20">
+      <div className="lg:!p-20 !p-5">
         <Header />
 
         <HStack justifyContent="end" marginBottom="2">
