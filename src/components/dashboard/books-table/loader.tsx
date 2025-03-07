@@ -3,7 +3,7 @@ import { Box, Spinner, Table } from "@chakra-ui/react";
 function Loader() {
   return (
     <Table.Row>
-      <Table.Cell colSpan={3} textAlign="center">
+      <Table.Cell colSpan={4} textAlign="center">
         <Box
           height={300}
           display="flex"
