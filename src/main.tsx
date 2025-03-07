@@ -5,6 +5,7 @@ import App from "./App.tsx";
 import { Provider } from "./components/ui/provider.tsx";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import { Toaster } from "./components/ui/toaster.tsx";
 
 const client = new ApolloClient({
   uri: import.meta.env.VITE_GRAPHQL_URI,
@@ -22,6 +23,7 @@ createRoot(document.getElementById("root")!).render(
     >
       <ApolloProvider client={client}>
         <Provider>
+          <Toaster />
           <App />
         </Provider>
       </ApolloProvider>

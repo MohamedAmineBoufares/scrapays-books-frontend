@@ -17,3 +17,13 @@ export const GET_BOOKS = gql`
     }
   }
 `;
+
+export const CREATE_BOOK = gql`
+  mutation CreateBook($name: String!, $description: String!) {
+    book: createBook(name: $name, description: $description) {
+      id
+      name
+      description
+    }
+  }
+`;
