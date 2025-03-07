@@ -8,9 +8,10 @@ import {
 import { useQuery } from "@apollo/client";
 import { GET_BOOKS } from "../../../queries";
 import { useState } from "react";
-import { FetchBooksResponse } from "../../../types";
+import type { FetchBooksResponse } from "../../../types";
 import NoData from "./no-data";
 import Loader from "./loader";
+import BookItem from "./book-item";
 
 function BooksTable() {
   const [pagination, setPagination] = useState({
@@ -32,11 +33,7 @@ function BooksTable() {
     }
 
     return data.books.books.map((book) => (
-      <Table.Row key={book.id}>
-        <Table.Cell>{book.id}</Table.Cell>
-        <Table.Cell>{book.name}</Table.Cell>
-        <Table.Cell>{book.description}</Table.Cell>
-      </Table.Row>
+      <BookItem key={book.id} book={book} />
     ));
   };
 
@@ -49,6 +46,7 @@ function BooksTable() {
               <Table.ColumnHeader>ID</Table.ColumnHeader>
               <Table.ColumnHeader>Name</Table.ColumnHeader>
               <Table.ColumnHeader>Description</Table.ColumnHeader>
+              <Table.ColumnHeader>Actions</Table.ColumnHeader>
             </Table.Row>
           </Table.Header>
           <Table.Body>{renderTableBody()}</Table.Body>

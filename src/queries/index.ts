@@ -27,3 +27,18 @@ export const CREATE_BOOK = gql`
     }
   }
 `;
+
+export const UPDATE_BOOK = gql`
+  mutation UpdateBook($id: String!, $updateBookDto: UpdateBookDto!) {
+    book: updateBook(id: $id, updateBookDto: $updateBookDto) {
+      name
+      description
+    }
+  }
+`;
+
+export const DELETE_BOOK = gql`
+  mutation DeleteBook($id: String!) {
+    deleteBook(id: $id)
+  }
+`;

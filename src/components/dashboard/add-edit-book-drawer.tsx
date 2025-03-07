@@ -13,7 +13,7 @@ import { Button, Input, Stack, Textarea, Spinner } from "@chakra-ui/react";
 import { Field } from "../ui/field";
 import { Book, FetchBooksResponse } from "../../types";
 import { useMutation, useQuery } from "@apollo/client";
-import { CREATE_BOOK, GET_BOOKS } from "../../queries";
+import { CREATE_BOOK, GET_BOOKS, UPDATE_BOOK } from "../../queries";
 import { useState } from "react";
 import { toaster } from "../ui/toaster";
 
@@ -27,6 +27,8 @@ const REQUIRED_FIELD = "This field is required";
 
 function AddEditBookDrawer({ open, toggleOpen, row }: Props) {
   const [createBook, { loading }] = useMutation(CREATE_BOOK);
+  const [updateBook, { loading: loadingEdit }] = useMutation(UPDATE_BOOK);
+
   const { refetch } = useQuery<FetchBooksResponse>(GET_BOOKS, {
     variables: { page: 1, take: 5 },
     skip: true,
@@ -69,9 +71,18 @@ function AddEditBookDrawer({ open, toggleOpen, row }: Props) {
     }
 
     try {
-      await createBook({
-        variables: formData,
-      });
+      if (row) {
+        await updateBook({
+          variables: {
+            id: row.id,
+            updateBookDto: formData,
+          },
+        });
+      } else {
+        await createBook({
+          variables: formData,
+        });
+      }
 
       await refetch();
 
@@ -136,10 +147,10 @@ function AddEditBookDrawer({ open, toggleOpen, row }: Props) {
               bg="purple.600"
               width="1/2"
               type="submit"
-              disabled={loading}
+              disabled={loading || loadingEdit}
               onClick={handleSubmit}
             >
-              {loading ? <Spinner /> : "Save"}
+              {loading || loadingEdit ? <Spinner /> : "Save"}
             </Button>
           </DrawerFooter>
           <DrawerCloseTrigger />
